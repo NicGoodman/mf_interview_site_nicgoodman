@@ -1,23 +1,18 @@
 <template>
   <div id="" class="">
-    <ul>
-      <li v-for="article in articles" v-bind:key="article.uuid">
-        <h1>
-          {{ article.headline }}
-        </h1>
-      </li>
-      Latest
-      <li>
-        <h1>
-          {{ latestArticles[0].headline }}
-        </h1>
-      </li>
-    </ul>
+    <LatestCard :headline="latestArticles[0].headline" />
+    <ArticleCard
+      v-for="article in articles"
+      :key="article.uuid"
+      :headline="article.headline"
+    />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import ArticleCard from "../components/ArticleCard.vue";
+import LatestCard from "../components/LatestCard.vue";
 
 export default {
   name: "HomePage",
@@ -39,6 +34,9 @@ export default {
       .then((response) => (this.articles = response.data.results));
   },
   props: {},
-  components: {},
+  components: {
+    ArticleCard,
+    LatestCard,
+  },
 };
 </script>
