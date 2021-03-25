@@ -5,6 +5,7 @@
       v-for="article in articles"
       :key="article.uuid"
       :headline="article.headline"
+      :thumbnail="article.images[0].url"
     />
   </div>
 </template>

@@ -15,7 +15,7 @@ import RecentsFeed from "../components/RecentsFeed.vue";
 
 export default {
   name: "ArticlePage",
-  props: {},
+  props: ['collectionSlug', 'headlineSlug'],
   components: {
     AuthorBioModal,
     MobileCommentModal,
