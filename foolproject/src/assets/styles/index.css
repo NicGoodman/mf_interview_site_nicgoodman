@@ -30,10 +30,12 @@
         @apply font-futura;
         @apply text-lg;
     }
-    button {
+    .button {
         @apply bg-mf-gold;
+        @apply hover:bg-mf-royal-purple;
         @apply rounded-xl;
-        @apply shadow-xl;
+        @apply shadow-lg;
+        @apply hover:shadow-md;
         @apply py-3;
         @apply px-8;
         @apply text-white;

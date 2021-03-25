@@ -1,5 +1,5 @@
 <template>
-  <header id="logo" class="w-full flex flex-row justify-center p-20">
+  <header id="logo" class="w-full flex flex-col items-center justify-between my-20 h-52">
     <h1>
       <a href="/">
         <img
@@ -9,6 +9,7 @@
         />
       </a>
     </h1>
+    <a href="/" class="button w-max">Return To Home</a>
   </header>
 </template>
 
