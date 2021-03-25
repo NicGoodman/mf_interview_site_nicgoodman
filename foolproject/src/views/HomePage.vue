@@ -1,19 +1,22 @@
 <template>
-  <main id="homepage-content" class="flex flex-col w-full bg-blue-500">
+  <main id="homepage-content" class="flex flex-col w-full bg-mf-blue px-16">
     <HeaderSection />
-    <section id="" class="">
-      <h1 class="font-black text-white shadow-2xl">Latest<br />News</h1>
+    <section id="" class="flex flex-row items-center">
+      <h1 class="font-black text-white text-shadow-xl mr-16">Latest<br />News</h1>
       <LatestCard
         :headline="tenPromiseArticles[0].headline"
         :thumbnail="tenPromiseArticles[0].images[0].url"
+        :promo="tenPromiseArticles[0].promo"
       />
     </section>
-    <section id="" class="flex flex-row flex-wrap w-full">
+    <section id="" class="flex flex-row flex-wrap w-full justify-center">
       <ArticleCard
         v-for="article in articles"
         :key="article.uuid"
         :headline="article.headline"
         :thumbnail="article.images[0].url"
+        :promo="article.promo"
+        :publishedDate="article.publish_at"
       />
     </section>
   </main>
