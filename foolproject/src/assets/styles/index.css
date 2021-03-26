@@ -45,4 +45,30 @@
         @apply font-bold;
 
     }
+
+    article.articleBody {
+        @apply text-mf-mid-gray;
+    }
+    article.articleBody p {
+        @apply mb-4;
+    }
+    article.articleBody p.caption {
+        @apply text-sm;
+        @apply text-center;
+    }
+    article.articleBody h2 {
+        @apply font-futura;
+        @apply text-2xl;
+    }
+    article.articleBody img {
+        @apply object-contain;
+        @apply rounded-md;
+        @apply w-auto;
+        @apply h-96;
+    }
+    article.articleBody .image {
+        @apply w-max;
+        @apply m-6;
+        @apply float-left;
+    }
 }

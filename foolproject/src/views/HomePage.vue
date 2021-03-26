@@ -36,6 +36,9 @@
         :authors="article.authors"
         :publishedDate="article.publish_at"
         :tags="article.tags"
+        :collectionSlug="article.collection.slug"
+        :body="article.body"
+        :stocks="article.instruments"
       />
     </section>
   </main>

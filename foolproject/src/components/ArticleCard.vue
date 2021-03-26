@@ -3,7 +3,22 @@
     id=""
     class="bg-white rounded-3xl shadow-xl w-full max-w-xs m-10 p-4 flex flex-col items-center"
   >
-    <h5 class="font-bold text-mf-blue">{{ headline }}</h5>
+    <router-link
+      :to="{
+        name: 'article',
+        params: {
+          collectionSlug: collectionSlug,
+          headlineSlug: headline,
+          headline: headline,
+          publishedDate: publishedDate,
+          authors: authors,
+          tags: tags,
+          body: body,
+          stocks: stocks,
+        },
+      }"
+      ><h5 class="font-bold text-mf-blue">{{ headline }}</h5></router-link
+    >
     <section
       id="author-date-bar"
       class="text-mf-mid-gray font-medium mb-3 self-start"
@@ -28,7 +43,23 @@
       <p class="text-mf-mid-gray font-medium">{{ promo }}</p>
     </section>
     <section id="see-more-content" class="flex flex-col items-center mt-auto">
-      <a href="" class="w-max button">Read More</a>
+      <router-link
+        :to="{
+          name: 'article',
+          params: {
+            collectionSlug: collectionSlug,
+            headlineSlug: headline,
+            headline: headline,
+            publishedDate: publishedDate,
+            authors: authors,
+            tags: tags,
+            body: body,
+            stocks: stocks,
+          },
+        }"
+      >
+        <p class="w-max button">Read More</p>
+      </router-link>
       <section id="tag-bar" class="text-white font-medium mt-6 text-center">
         <p
           v-for="tag in tags"
@@ -45,6 +76,18 @@
 <script>
 export default {
   name: "ArticleCard",
-  props: ["headline", "thumbnail", "promo", "publishedDate", "authors", "tags"],
+  props: [
+    "headline",
+    "thumbnail",
+    "promo",
+    "publishedDate",
+    "authors",
+    "tags",
+    "collectionSlug",
+    "body",
+    "stocks",
+  ],
 };
 </script>
+
+

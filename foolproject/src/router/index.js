@@ -7,18 +7,15 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
+    path: "/",
+    name: "Home",
     component: HomePage
   },
   {
-    path: '/articles',
+    path: "/articles/:collectionSlug/:headlineSlug",
+    name: "article",
     component: ArticlePage,
-    children: [
-      {
-      path: "/:collectionSlug/:headlineSlug"
-      }
-    ]
+    props: true
   }
 ]
 

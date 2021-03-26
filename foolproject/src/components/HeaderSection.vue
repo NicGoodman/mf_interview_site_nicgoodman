@@ -1,15 +1,20 @@
 <template>
-  <header id="logo" class="w-full flex flex-col items-center justify-between my-20 h-52">
+  <header
+    id="logo"
+    class="w-full flex flex-col items-center justify-between my-20 h-52"
+  >
     <h1>
-      <a href="/">
+      <router-link to="/">
         <img
           src="../assets/the-motley-fool-logo.png"
           alt="The Motley Fool Logo Primary Red Purple"
           class="w-64"
         />
-      </a>
+      </router-link>
     </h1>
-    <a href="/" class="button w-max">Return To Home</a>
+    <router-link to="/">
+      <p class="button w-max">Return To Home</p>
+    </router-link>
   </header>
 </template>
 
