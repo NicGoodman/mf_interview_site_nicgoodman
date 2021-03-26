@@ -1,5 +1,5 @@
 <template>
-  <main id="homepage-content" class="flex flex-col w-full bg-mf-gold">
+  <main id="homepage-content" class="flex flex-col w-full bg-mf-gold px-16">
     <img
       src="../assets/hero-bg.svg"
       alt=""
@@ -7,7 +7,7 @@
     />
     <section
       id="hero"
-      class="flex flex-row flex-wrap justify-center px-16 w-full bg-cover bg-bottom z-20"
+      class="flex flex-row flex-wrap justify-center w-full bg-cover bg-bottom z-20 mb-20"
     >
       <HeaderSection />
       <h1 class="font-black text-white text-shadow-xl mr-16">
@@ -22,7 +22,11 @@
         :tags="tenPromiseArticles[0].tags"
       />
     </section>
-    <section id="" class="flex flex-row flex-wrap w-full justify-center z-20">
+    <section
+      id="older-articles-content"
+      class="flex flex-row flex-wrap w-full justify-center z-20"
+    >
+      <FiltersSection :tags="tags" />
       <ArticleCard
         v-for="article in articles"
         :key="article.uuid"
@@ -39,15 +43,17 @@
 
 <script>
 import axios from "axios";
-import ArticleCard from "../components/ArticleCard.vue";
-import LatestCard from "../components/LatestCard.vue";
 import HeaderSection from "../components/HeaderSection.vue";
+import FiltersSection from "../components/FiltersSection.vue";
+import LatestCard from "../components/LatestCard.vue";
+import ArticleCard from "../components/ArticleCard.vue";
 
 export default {
   name: "HomePage",
   data() {
     return {
       articles: [],
+      tags: [],
     };
   },
   computed: {
@@ -57,16 +63,35 @@ export default {
       });
     },
   },
-  mounted() {
-    axios
-      .get("http://127.0.0.1:8000/content")
-      .then((response) => (this.articles = response.data.results));
+  async mounted() {
+    try {
+      var articles = await axios({
+        method: "GET",
+        url: "http://127.0.0.1:8000/content",
+      });
+      this.articles = articles.data.results;
+      const map = new Map();
+      for (const article of this.articles) {
+        for (const tag of article.tags) {
+          if (!map.has(tag.uuid)) {
+            map.set(tag.uuid, true);
+            this.tags.push({
+              tag,
+            });
+          }
+        }
+      }
+      console.log(this.tags);
+    } catch (error) {
+      console.error(error);
+    }
   },
   props: {},
   components: {
-    ArticleCard,
-    LatestCard,
     HeaderSection,
+    FiltersSection,
+    LatestCard,
+    ArticleCard,
   },
 };
 </script>
