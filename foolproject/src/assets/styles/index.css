@@ -64,11 +64,34 @@
         @apply object-contain;
         @apply rounded-md;
         @apply w-auto;
-        @apply h-96;
+        @apply h-80;
+        @apply m-6;
+        @apply mx-auto;
     }
     article.articleBody .image {
         @apply w-max;
         @apply m-6;
-        @apply float-left;
+        @apply float-right;
+    }
+    article.articleBody ul {
+        @apply mt-3;
+        @apply list-outside;
+    }
+    article.articleBody ul li {
+        @apply list-disc;
+        @apply font-futura;
+        @apply text-base;
+        @apply font-medium;
+        @apply text-mf-mid-gray;
+        @apply mb-6;
+        @apply ml-8;
+    }
+    .active {
+        @apply bg-mf-blue;
+        @apply bg-opacity-100;
+    }
+    .inactive {
+        @apply bg-mf-blue;
+        @apply bg-opacity-25;
     }
 }

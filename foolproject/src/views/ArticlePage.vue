@@ -18,7 +18,7 @@
       id="article-page-card"
       class="bg-white rounded-3xl shadow-xl w-full p-16 flex flex-row items-start z-20"
     >
-      <section id="sidebar-content" class="w-96">
+      <section id="sidebar-content" class="w-96 flex-shrink-0">
         <StocksFeed :stocks="stocks" />
         <RecentsFeed />
       </section>

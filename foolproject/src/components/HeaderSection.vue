@@ -8,7 +8,7 @@
         <img
           src="../assets/the-motley-fool-logo.png"
           alt="The Motley Fool Logo Primary Red Purple"
-          class="w-64"
+          class="w-80"
         />
       </router-link>
     </h1>

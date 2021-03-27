@@ -18,13 +18,24 @@
       <div id="tags" class="flex flex-row flex-wrap justify-center">
         <h5 class="text-white text-shadow-xl uppercase font-bold mr-3">Tags</h5>
         <section id="tag-bar" class="text-white font-medium text-center">
-          <p
-            v-for="tag in tags"
-            :key="tag.tag.uuid"
-            class="text-xs inline-block bg-mf-blue rounded-full px-2 py-1 bg-opacity-25 m-1"
-          >
-            {{ tag.tag.name }}
-          </p>
+          <ul>
+            <li
+              @click="getArticles('all', null)"
+              :class="{ active: null === activeTag, inactive: null != activeTag }"
+              class="text-xs inline-block rounded-full px-2 py-1 hover:bg-opacity-100 cursor-pointer m-1"
+            >
+              All Articles
+            </li>
+            <li
+              v-for="(tag, i) in tags"
+              :key="tag.tag.uuid"
+              @click="getArticles(tag.tag.slug, i)"
+              :class="{ active: i === activeTag, inactive: i != activeTag }"
+              class="text-xs inline-block rounded-full px-2 py-1 m-1 hover:bg-opacity-100 cursor-pointer"
+            >
+              {{ tag.tag.name }}
+            </li>
+          </ul>
         </section>
       </div>
     </section>
@@ -34,6 +45,11 @@
 <script>
 export default {
   name: "FiltersSection",
-  props: ["tags"],
+  props: ["tags", "activeTag"],
+  methods: {
+    getArticles(tagSlug, i) {
+      this.$parent.getArticles(tagSlug, i);
+    },
+  },
 };
 </script>
