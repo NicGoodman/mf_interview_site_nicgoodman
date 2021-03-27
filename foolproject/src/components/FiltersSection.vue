@@ -10,9 +10,10 @@
       id="filters-bar"
       class="flex flex-row flex-wrap items-start w-full"
     >
-      <div id="date-sort" class="">
+      <div id="date-sort" class="cursor-pointer" @click="sortArticles()">
         <h5 class="text-white text-shadow-xl uppercase font-bold mr-8">
-          Date <i class="fas fa-caret-up"></i><i class="fas fa-caret-down"></i>
+          Date <i class="fas fa-caret-up" :class="{activeSort: ascending}"></i
+          ><i class="fas fa-caret-down" :class="{activeSort: !ascending}"></i>
         </h5>
       </div>
       <div id="tags" class="flex flex-row flex-wrap justify-center">
@@ -21,7 +22,10 @@
           <ul>
             <li
               @click="getArticles('all', null)"
-              :class="{ active: null === activeTag, inactive: null != activeTag }"
+              :class="{
+                active: null === activeTag,
+                inactive: null != activeTag,
+              }"
               class="text-xs inline-block rounded-full px-2 py-1 hover:bg-opacity-100 cursor-pointer m-1"
             >
               All Articles
@@ -45,11 +49,14 @@
 <script>
 export default {
   name: "FiltersSection",
-  props: ["tags", "activeTag"],
+  props: ["tags", "activeTag", "ascending"],
   methods: {
     getArticles(tagSlug, i) {
       this.$parent.getArticles(tagSlug, i);
     },
+    sortArticles() {
+        this.$parent.sortArticles();
+    }
   },
 };
 </script>

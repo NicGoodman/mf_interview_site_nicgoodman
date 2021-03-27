@@ -8,7 +8,7 @@
         name: 'article',
         params: {
           collectionSlug: collectionSlug,
-          headlineSlug: headline,
+          headlineSlug: headlineSlug,
           headline: headline,
           publishedDate: publishedDate,
           authors: authors,
@@ -76,6 +76,11 @@
 <script>
 export default {
   name: "ArticleCard",
+  data() {
+    return {
+      headlineSlug: ""
+    }
+  },
   props: [
     "headline",
     "thumbnail",
@@ -86,7 +91,13 @@ export default {
     "collectionSlug",
     "body",
     "stocks",
+    "uuid",
+    "tenPromiseArticles"
   ],
+  mounted() {
+    this.headlineSlug = this.headline.replace(/[^a-zA-Z ]/g, "").replace(/\s+/g, '-').toLowerCase();
+    this.body = this.body.replace("{%sfr%}", "")
+  },
 };
 </script>
 

@@ -43,6 +43,9 @@
         @apply text-lg;
         @apply uppercase;
         @apply font-bold;
+        @apply cursor-pointer;
+        @apply w-max;
+        @apply text-center;
 
     }
 
@@ -93,5 +96,8 @@
     .inactive {
         @apply bg-mf-blue;
         @apply bg-opacity-25;
+    }
+    .activeSort {
+        @apply text-mf-red;
     }
 }
