@@ -1,7 +1,7 @@
 <template>
   <main
     id="homepage-content"
-    class="flex flex-col w-full bg-mf-gold min-h-screen px-2 pb-2 md:px-8 md:pb-8 xl:px-16 xl:pb-16"
+    class="flex flex-col w-full bg-mf-gold min-h-screen px-2 pb-2 md:px-8 md:pb-8 xl:px-16 xl:pb-16 relative"
   >
     <img
       src="../assets/hero-bg.svg"
@@ -39,12 +39,13 @@
           <p
             v-for="author in currentArticle.authors"
             :key="author.fool_uid"
-            class="inline"
+            class="inline font-bold text-mf-royal-purple cursor-pointer hover:text-mf-red"
+            @click="openModal()"
           >
-            {{ author.byline }} •
+            {{ author.byline }}
           </p>
           <p class="inline">
-            {{
+             • {{
               currentArticle.publish_at
                 | dateParse("YYYY-MM-DD HH:mm:ss")
                 | dateFormat("DD.MM.YYYY")
@@ -63,11 +64,14 @@
             </p>
           </section>
         </section>
-        <article class="articleBody mb-12" v-html="currentArticle.body"></article>
+        <article
+          class="articleBody mb-12"
+          v-html="currentArticle.body"
+        ></article>
       </section>
       <CommentFeed />
-      <AuthorBioModal />
     </section>
+    <AuthorBioModal :showModal="showModal" :authors="currentArticle.authors" />
   </main>
 </template>
 
@@ -83,6 +87,7 @@ export default {
   name: "ArticlePage",
   data() {
     return {
+      showModal: false,
       visible: true,
       articles: [],
       currentArticle: undefined,
@@ -117,6 +122,20 @@ export default {
       }
     } catch (error) {
       console.error(error);
+    }
+  },
+  methods: {
+    openModal() {
+      this.showModal = !this.showModal;
+    },
+  },
+  watch: {
+    showModal(value) {
+      if (value) {
+        return document.querySelector('body').classList.add('overflow-hidden');
+      }
+
+      document.querySelector('body').classList.remove('overflow-hidden');
     }
   },
 };
