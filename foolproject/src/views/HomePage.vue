@@ -35,10 +35,6 @@
           :authors="tenPromiseArticles[0].authors"
           :publishedDate="tenPromiseArticles[0].publish_at"
           :tags="tenPromiseArticles[0].tags"
-          :collectionSlug="tenPromiseArticles[0].collection.slug"
-          :body="tenPromiseArticles[0].body"
-          :stocks="tenPromiseArticles[0].instruments"
-          :articles="articles"
         />
       </section>
     </section>
@@ -60,10 +56,7 @@
         :authors="article.authors"
         :publishedDate="article.publish_at"
         :tags="article.tags"
-        :collectionSlug="article.collection.slug"
-        :body="article.body"
-        :stocks="article.instruments"
-        :articles="articles"
+        :articleSlug="article.article_slug"
       />
     </section>
   </main>
@@ -119,6 +112,12 @@ export default {
         url: "http://127.0.0.1:8000/content",
       });
       this.articles = articles.data.results;
+      for (const article of this.articles) {
+        article.article_slug = article.headline
+          .replace(/[^a-zA-Z ]/g, "")
+          .replace(/\s+/g, "-")
+          .toLowerCase();
+      }
       this.tenPromiseArticles = this.articles.filter((article) => {
         return article.tags.some((tag) => tag.slug.includes("10-promise"));
       });
@@ -154,6 +153,12 @@ export default {
           url: tagUrl,
         });
         this.articles = filteredArticles.data.results;
+        for (const article of this.articles) {
+          article.article_slug = article.headline
+            .replace(/[^a-zA-Z ]/g, "")
+            .replace(/\s+/g, "-")
+            .toLowerCase();
+        }
       } catch (error) {
         console.error(error);
       }

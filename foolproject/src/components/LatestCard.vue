@@ -8,20 +8,15 @@
       alt=""
       class="w-48 h-48 xl:w-64 xl:h-64 mx-auto md:mx-0 object-cover rounded-full border-red-600 border-4"
     />
-    <section id="article-preview" class="flex flex-col ml-0 md:ml-6 w-full md:w-auto md:flex-1">
+    <section
+      id="article-preview"
+      class="flex flex-col ml-0 md:ml-6 w-full md:w-auto md:flex-1"
+    >
       <router-link
         :to="{
           name: 'article',
           params: {
-            collectionSlug: collectionSlug,
-            headlineSlug: headlineSlug,
-            headline: headline,
-            publishedDate: publishedDate,
-            authors: authors,
-            tags: tags,
-            body: articleBody,
-            stocks: stocks,
-            articles: articles,
+            articleSlug: articleSlug,
           },
         }"
       >
@@ -56,15 +51,7 @@
         :to="{
           name: 'article',
           params: {
-            collectionSlug: collectionSlug,
-            headlineSlug: headlineSlug,
-            headline: headline,
-            publishedDate: publishedDate,
-            authors: authors,
-            tags: tags,
-            body: articleBody,
-            stocks: stocks,
-            articles: articles,
+            articleSlug: articleSlug,
           },
         }"
         ><p class="mt-auto w-max button">Read More</p></router-link
@@ -86,10 +73,7 @@
 export default {
   name: "LatestCard",
   data() {
-    return {
-      headlineSlug: "",
-      articleBody: "",
-    };
+    return {};
   },
   props: [
     "headline",
@@ -98,20 +82,7 @@ export default {
     "publishedDate",
     "authors",
     "tags",
-    "collectionSlug",
-    "body",
-    "stocks",
-    "uuid",
-    "tenPromiseArticles",
-    "visible",
-    "articles",
+    "articleSlug"
   ],
-  created() {
-    this.headlineSlug = this.headline
-      .replace(/[^a-zA-Z ]/g, "")
-      .replace(/\s+/g, "-")
-      .toLowerCase();
-    this.articleBody = this.body.replace("{%sfr%}", "");
-  },
 };
 </script>

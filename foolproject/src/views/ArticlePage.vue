@@ -20,25 +20,32 @@
       class="bg-white rounded-3xl shadow-xl w-full p-4 md:p-10 flex flex-col lg:flex-row flex-wrap items-start z-20"
     >
       <section id="sidebar-content" class="flex-shrink-0 order-2 lg:order-1">
-        <StocksFeed :stocks="stocks" />
-        <RecentsFeed :articles="articles"/>
+        <StocksFeed :stocks="currentArticle.instruments" />
+        <RecentsFeed :articles="articles" />
       </section>
-      <section id="article-content" class="flex flex-col ml-0 lg:ml-6 order-1 lg:order-2 w-full flex-1">
+      <section
+        id="article-content"
+        class="flex flex-col ml-0 lg:ml-6 order-1 lg:order-2 w-full flex-1"
+      >
         <h4
           class="font-bold text-mf-mid-gray border-b-4 border-mf-red pb-4 mb-1"
         >
-          {{ headline }}
+          {{ currentArticle.headline }}
         </h4>
         <section
           id="author-date-bar"
           class="text-mf-mid-gray font-medium mb-3 self-start flex flex-col md:flex-row w-full"
         >
-          <p v-for="author in authors" :key="author.fool_uid" class="inline">
+          <p
+            v-for="author in currentArticle.authors"
+            :key="author.fool_uid"
+            class="inline"
+          >
             {{ author.byline }} •
           </p>
           <p class="inline">
             {{
-              publishedDate
+              currentArticle.publish_at
                 | dateParse("YYYY-MM-DD HH:mm:ss")
                 | dateFormat("DD.MM.YYYY")
             }}
@@ -48,7 +55,7 @@
             class="text-white font-medium text-center ml-auto"
           >
             <p
-              v-for="tag in tags"
+              v-for="tag in currentArticle.tags"
               :key="tag.uuid"
               class="text-xs inline-block bg-mf-blue rounded-full px-2 py-1 bg-opacity-25 m-1"
             >
@@ -56,7 +63,7 @@
             </p>
           </section>
         </section>
-        <article class="articleBody mb-12" v-html="body"></article>
+        <article class="articleBody mb-12" v-html="currentArticle.body"></article>
       </section>
       <CommentFeed />
       <AuthorBioModal />
@@ -65,6 +72,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import HeaderSection from "../components/HeaderSection.vue";
 import AuthorBioModal from "../components/AuthorBioModal.vue";
 import StocksFeed from "../components/StocksFeed.vue";
@@ -76,25 +84,40 @@ export default {
   data() {
     return {
       visible: true,
+      articles: [],
+      currentArticle: undefined,
     };
   },
-  props: [
-    "collectionSlug",
-    "headlineSlug",
-    "headline",
-    "tags",
-    "body",
-    "publishedDate",
-    "authors",
-    "stocks",
-    "articles"
-  ],
   components: {
     HeaderSection,
     AuthorBioModal,
     StocksFeed,
     RecentsFeed,
     CommentFeed,
+  },
+  async created() {
+    try {
+      var articles = await axios({
+        method: "GET",
+        url: "http://127.0.0.1:8000/content",
+      });
+      this.articles = articles.data.results;
+      for (const article of this.articles) {
+        article.body = article.body.replace("{%sfr%}", "");
+        article.article_slug = article.headline
+          .replace(/[^a-zA-Z ]/g, "")
+          .replace(/\s+/g, "-")
+          .toLowerCase();
+        if (
+          "/articles/" + article.article_slug ===
+          this.$router.currentRoute.path
+        ) {
+          this.currentArticle = article;
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 </script>
