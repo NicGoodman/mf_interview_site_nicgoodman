@@ -49,7 +49,7 @@
         @apply text-center;
 
     }
-
+/* the below css rules control the styling of the html in an article's body */
     article.articleBody {
         @apply text-mf-mid-gray;
     }
@@ -107,6 +107,8 @@
         @apply text-center;
         @apply text-base;
     }
+
+    /* These are my active and inactive states for my tag filters and sort carets */
     .active {
         @apply bg-mf-blue;
         @apply bg-opacity-100;
