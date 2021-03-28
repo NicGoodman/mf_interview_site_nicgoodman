@@ -45,7 +45,8 @@
             {{ author.byline }}
           </p>
           <p class="inline">
-             • {{
+            •
+            {{
               currentArticle.publish_at
                 | dateParse("YYYY-MM-DD HH:mm:ss")
                 | dateFormat("DD.MM.YYYY")
@@ -64,10 +65,8 @@
             </p>
           </section>
         </section>
-        <article
-          class="articleBody mb-12"
-          v-html="currentArticle.body"
-        ></article>
+        <article class="articleBody" v-html="currentArticle.body"></article>
+        <article class="articleBody mb-12" v-html="currentArticle.disclosure"></article>
       </section>
       <CommentFeed />
     </section>
@@ -132,11 +131,11 @@ export default {
   watch: {
     showModal(value) {
       if (value) {
-        return document.querySelector('body').classList.add('overflow-hidden');
+        return document.querySelector("body").classList.add("overflow-hidden");
       }
 
-      document.querySelector('body').classList.remove('overflow-hidden');
-    }
+      document.querySelector("body").classList.remove("overflow-hidden");
+    },
   },
 };
 </script>
