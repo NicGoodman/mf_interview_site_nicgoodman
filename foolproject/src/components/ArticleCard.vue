@@ -20,6 +20,7 @@
         {{ author.byline }} •
       </p>
       <p class="inline">
+        <!-- Here the fancy vue date filters are used to show the publishedDate prop in a more visually appealing way. The data is not modified so the sort by date option still works as expected -->
         {{
           publishedDate
             | dateParse("YYYY-MM-DD HH:mm:ss")

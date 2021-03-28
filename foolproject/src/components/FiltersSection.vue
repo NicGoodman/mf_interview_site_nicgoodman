@@ -10,12 +10,14 @@
       id="filters-bar"
       class="flex flex-row flex-wrap justify-center md:justify-start w-full"
     >
+    <!-- Articles are sorted in ascending or descending order based on date. The caret icons are highlighted depending on the status of the ascending property. -->
       <div id="date-sort" class="cursor-pointer ml-12 md:ml-0" @click="sortArticles()">
         <h5 class="text-white text-shadow-xl uppercase font-bold mr-8">
           Date <i class="fas fa-caret-up" :class="{activeSort: ascending}"></i
           ><i class="fas fa-caret-down" :class="{activeSort: !ascending}"></i>
         </h5>
       </div>
+      <!-- Tags are activated using the getArticles method. Active and Inactive classes are applied to the tag bubbles based on what the activeTag property value is. That is set to the index of the loop in the case of tags and set to null if the All Articles option is chosen. -->
       <div id="tags" class="flex flex-row flex-wrap justify-center">
         <h5 class="text-white text-shadow-xl uppercase font-bold mr-3">Tags</h5>
         <section id="tag-bar" class="text-white font-medium text-center">
@@ -50,6 +52,7 @@
 export default {
   name: "FiltersSection",
   props: ["tags", "activeTag", "ascending"],
+  //Utilizing methods from the parent component.
   methods: {
     getArticles(tagSlug, i) {
       this.$parent.getArticles(tagSlug, i);

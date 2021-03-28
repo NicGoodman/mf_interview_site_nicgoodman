@@ -1,4 +1,5 @@
 <template>
+<!-- The code for the LatestCard component is almost the same as the ArticleCard component. The differences are in styling and props are defined by properties from the first object in the tenPromiseArticles array. -->
   <article
     id=""
     class="bg-white rounded-3xl shadow-xl w-full mb-5 p-4 md:p-9 max-w-4xl flex flex-row flex-wrap flex-1"
@@ -34,6 +35,7 @@
           {{ author.byline }} •
         </p>
         <p class="inline">
+          <!-- Here the fancy vue date filters are used to show the publishedDate prop in a more visually appealing way. The data is not modified so the sort by date option still works as expected -->
           {{
             publishedDate
               | dateParse("YYYY-MM-DD HH:mm:ss")
@@ -82,7 +84,7 @@ export default {
     "publishedDate",
     "authors",
     "tags",
-    "articleSlug"
+    "articleSlug",
   ],
 };
 </script>

@@ -4,6 +4,7 @@
       Latest Articles
     </h5>
     <ul>
+      <!-- Simple loop through all articles and creating a router link for each one. Text is derrived from the headline -->
       <li v-for="article in articles" :key="article.uuid">
         <router-link
           :to="{
