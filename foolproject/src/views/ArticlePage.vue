@@ -1,7 +1,7 @@
 <template>
   <main
     id="homepage-content"
-    class="flex flex-col w-full bg-mf-gold min-h-screen px-16"
+    class="flex flex-col w-full bg-mf-gold min-h-screen px-2 pb-2 md:px-8 md:pb-8 xl:px-16 xl:pb-16"
   >
     <img
       src="../assets/hero-bg.svg"
@@ -12,17 +12,18 @@
       id="hero"
       class="flex flex-row flex-wrap justify-center w-full bg-cover bg-bottom z-20"
     >
-      <HeaderSection />
+      <HeaderSection :visible="visible" />
     </section>
+
     <section
       id="article-page-card"
-      class="bg-white rounded-3xl shadow-xl w-full p-16 flex flex-row items-start z-20"
+      class="bg-white rounded-3xl shadow-xl w-full p-4 md:p-10 flex flex-col lg:flex-row flex-wrap items-start z-20"
     >
-      <section id="sidebar-content" class="w-96 flex-shrink-0">
+      <section id="sidebar-content" class="flex-shrink-0 order-2 lg:order-1">
         <StocksFeed :stocks="stocks" />
-        <RecentsFeed />
+        <RecentsFeed :articles="articles"/>
       </section>
-      <section id="article-content" class="flex flex-col ml-6">
+      <section id="article-content" class="flex flex-col ml-0 lg:ml-6 order-1 lg:order-2 w-full flex-1">
         <h4
           class="font-bold text-mf-mid-gray border-b-4 border-mf-red pb-4 mb-1"
         >
@@ -30,7 +31,7 @@
         </h4>
         <section
           id="author-date-bar"
-          class="text-mf-mid-gray font-medium mb-3 self-start flex flex-row w-full"
+          class="text-mf-mid-gray font-medium mb-3 self-start flex flex-col md:flex-row w-full"
         >
           <p v-for="author in authors" :key="author.fool_uid" class="inline">
             {{ author.byline }} •
@@ -55,10 +56,10 @@
             </p>
           </section>
         </section>
-        <article class="articleBody" v-html="body"></article>
+        <article class="articleBody mb-12" v-html="body"></article>
       </section>
+      <CommentFeed />
       <AuthorBioModal />
-      <MobileCommentModal />
     </section>
   </main>
 </template>
@@ -66,12 +67,17 @@
 <script>
 import HeaderSection from "../components/HeaderSection.vue";
 import AuthorBioModal from "../components/AuthorBioModal.vue";
-import MobileCommentModal from "../components/MobileCommentModal.vue";
 import StocksFeed from "../components/StocksFeed.vue";
 import RecentsFeed from "../components/RecentsFeed.vue";
+import CommentFeed from "../components/CommentFeed.vue";
 
 export default {
   name: "ArticlePage",
+  data() {
+    return {
+      visible: true,
+    };
+  },
   props: [
     "collectionSlug",
     "headlineSlug",
@@ -81,13 +87,14 @@ export default {
     "publishedDate",
     "authors",
     "stocks",
+    "articles"
   ],
   components: {
     HeaderSection,
     AuthorBioModal,
-    MobileCommentModal,
     StocksFeed,
     RecentsFeed,
+    CommentFeed,
   },
 };
 </script>

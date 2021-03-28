@@ -5,7 +5,8 @@
 @layer components {
     h1 {
         @apply font-futura;
-        @apply text-9xl;
+        @apply text-7xl;
+        @apply lg:text-9xl;
         @apply font-bold;
     }
     h2 {
@@ -66,15 +67,16 @@
     article.articleBody img {
         @apply object-contain;
         @apply rounded-md;
-        @apply w-auto;
-        @apply h-80;
-        @apply m-6;
+        @apply lg:w-auto;
+        @apply h-auto;
+        @apply max-h-64;
+        @apply lg:m-6;
         @apply mx-auto;
     }
     article.articleBody .image {
-        @apply w-max;
-        @apply m-6;
-        @apply float-right;
+        @apply md:w-max;
+        @apply lg:m-6;
+        @apply md:float-right;
     }
     article.articleBody ul {
         @apply mt-3;
@@ -88,6 +90,22 @@
         @apply text-mf-mid-gray;
         @apply mb-6;
         @apply ml-8;
+    }
+    article.articleBody thead {
+        @apply w-max;
+    }
+    article.articleBody thead {
+        @apply text-mf-mid-gray;
+        @apply font-futura;
+        @apply font-bold;
+        @apply text-base;
+    }
+    article.articleBody td {
+        @apply text-mf-mid-gray;
+        @apply font-futura;
+        @apply font-medium;
+        @apply text-center;
+        @apply text-base;
     }
     .active {
         @apply bg-mf-blue;

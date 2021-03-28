@@ -13,7 +13,12 @@
       </router-link>
     </h1>
     <router-link to="/">
-      <p class="button w-max">Return To Home</p>
+      <p
+        class="button w-max"
+        :class="{ hidden: !visible }"
+      >
+        Return To Home
+      </p>
     </router-link>
   </header>
 </template>
@@ -21,5 +26,6 @@
 <script>
 export default {
   name: "HeaderSection",
+  props: ["visible"],
 };
 </script>

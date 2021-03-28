@@ -2,15 +2,15 @@
   <section id="filters-section" class="w-full flex flex-col">
     <header
       id=""
-      class="text-right border-b-4 border-mf-royal-purple pb-4 mb-4 w-full"
+      class="text-center lg:text-right border-b-4 border-mf-royal-purple pb-4 mb-4 w-full"
     >
       <h2 class="text-white text-shadow-xl">Older Articles</h2>
     </header>
     <section
       id="filters-bar"
-      class="flex flex-row flex-wrap items-start w-full"
+      class="flex flex-row flex-wrap justify-center md:justify-start w-full"
     >
-      <div id="date-sort" class="cursor-pointer" @click="sortArticles()">
+      <div id="date-sort" class="cursor-pointer ml-12 md:ml-0" @click="sortArticles()">
         <h5 class="text-white text-shadow-xl uppercase font-bold mr-8">
           Date <i class="fas fa-caret-up" :class="{activeSort: ascending}"></i
           ><i class="fas fa-caret-down" :class="{activeSort: !ascending}"></i>

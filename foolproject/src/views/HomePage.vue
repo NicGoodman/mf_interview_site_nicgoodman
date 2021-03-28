@@ -1,5 +1,8 @@
-<template>
-  <main id="homepage-content" class="flex flex-col w-full bg-mf-gold px-16">
+<template v-if="articles">
+  <main
+    id="homepage-content"
+    class="flex flex-col w-full bg-mf-gold px-2 pb-2 md:px-8 md:pb-8 xl:px-16 xl:pb-16"
+  >
     <img
       src="../assets/hero-bg.svg"
       alt=""
@@ -9,18 +12,33 @@
       id="hero"
       class="flex flex-col flex-wrap items-center w-full bg-cover bg-bottom z-20 mb-20"
     >
-      <HeaderSection />
-      <section id="latest-section" class="flex flex-row items-center">
-        <h1 class="font-black text-white text-shadow-xl mr-16">
+      <HeaderSection :visible="visible" />
+      <section
+        id="latest-section"
+        class="flex flex-col lg:flex-row items-center"
+      >
+        <h1
+          class="font-black text-white text-shadow-xl mr-0 lg:mr-16 mb-6 lg:mb-0 hidden lg:block"
+        >
           Latest<br />News
         </h1>
+        <h1
+          class="font-black text-white text-shadow-xl mr-0 lg:mr-16 mb-6 lg:mb-0 lg:hidden text-center"
+        >
+          Latest News
+        </h1>
         <LatestCard
+          v-if="tenPromiseArticles"
           :headline="tenPromiseArticles[0].headline"
           :thumbnail="tenPromiseArticles[0].images[0].url"
           :promo="tenPromiseArticles[0].promo"
           :authors="tenPromiseArticles[0].authors"
           :publishedDate="tenPromiseArticles[0].publish_at"
           :tags="tenPromiseArticles[0].tags"
+          :collectionSlug="tenPromiseArticles[0].collection.slug"
+          :body="tenPromiseArticles[0].body"
+          :stocks="tenPromiseArticles[0].instruments"
+          :articles="articles"
         />
       </section>
     </section>
@@ -45,6 +63,7 @@
         :collectionSlug="article.collection.slug"
         :body="article.body"
         :stocks="article.instruments"
+        :articles="articles"
       />
     </section>
   </main>
@@ -62,8 +81,9 @@ export default {
   data() {
     return {
       ascending: false,
+      visible: false,
       articles: [],
-      tenPromiseArticles: [],
+      tenPromiseArticles: undefined,
       tags: [],
       activeTag: null,
     };
@@ -71,6 +91,9 @@ export default {
   computed: {
     filteredArticles: function () {
       let sortedArticles = this.articles;
+      sortedArticles = sortedArticles.filter(
+        (article) => article.uuid !== this.tenPromiseArticles[0].uuid
+      );
       sortedArticles = sortedArticles.sort((a, b) => {
         let fa = a.publish_at.toLowerCase(),
           fb = b.publish_at.toLowerCase();
@@ -89,7 +112,7 @@ export default {
       return sortedArticles;
     },
   },
-  async mounted() {
+  async created() {
     try {
       var articles = await axios({
         method: "GET",
@@ -99,7 +122,6 @@ export default {
       this.tenPromiseArticles = this.articles.filter((article) => {
         return article.tags.some((tag) => tag.slug.includes("10-promise"));
       });
-      console.log(this.tenPromiseArticles);
       const map = new Map();
       for (const article of this.articles) {
         for (const tag of article.tags) {
@@ -111,7 +133,6 @@ export default {
           }
         }
       }
-      console.log(this.tags);
     } catch (error) {
       console.error(error);
     }
@@ -139,7 +160,7 @@ export default {
     },
     sortArticles() {
       this.ascending = !this.ascending;
-    }
+    },
   },
   props: {},
   components: {

@@ -1,7 +1,7 @@
 <template>
   <article
     id=""
-    class="bg-white rounded-3xl shadow-xl w-full max-w-xs m-10 p-4 flex flex-col items-center"
+    class="bg-white rounded-3xl shadow-xl w-full max-w-xs m-5 p-4 flex flex-col items-center"
   >
     <router-link
       :to="{
@@ -13,8 +13,9 @@
           publishedDate: publishedDate,
           authors: authors,
           tags: tags,
-          body: body,
+          body: articleBody,
           stocks: stocks,
+          articles:articles
         },
       }"
       ><h5 class="font-bold text-mf-blue">{{ headline }}</h5></router-link
@@ -48,13 +49,14 @@
           name: 'article',
           params: {
             collectionSlug: collectionSlug,
-            headlineSlug: headline,
+            headlineSlug: headlineSlug,
             headline: headline,
             publishedDate: publishedDate,
             authors: authors,
             tags: tags,
-            body: body,
+            body: articleBody,
             stocks: stocks,
+            articles:articles
           },
         }"
       >
@@ -78,7 +80,8 @@ export default {
   name: "ArticleCard",
   data() {
     return {
-      headlineSlug: ""
+      headlineSlug: "",
+      articleBody: ""
     }
   },
   props: [
@@ -92,11 +95,13 @@ export default {
     "body",
     "stocks",
     "uuid",
-    "tenPromiseArticles"
+    "tenPromiseArticles",
+    "visible",
+    "articles"
   ],
-  mounted() {
+  created() {
     this.headlineSlug = this.headline.replace(/[^a-zA-Z ]/g, "").replace(/\s+/g, '-').toLowerCase();
-    this.body = this.body.replace("{%sfr%}", "")
+    this.articleBody = this.body.replace("{%sfr%}", "");
   },
 };
 </script>
