@@ -1,3 +1,121 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    h1 {
+        @apply font-futura;
+        @apply text-7xl;
+        @apply lg:text-9xl;
+        @apply font-bold;
+    }
+    h2 {
+        @apply font-futura;
+        @apply text-6xl;
+        @apply font-bold;
+    }
+    h3 {
+        @apply font-futura;
+        @apply text-5xl;
+        @apply font-bold;
+    }
+    h4 {
+        @apply font-futura;
+        @apply text-4xl;
+    }
+    h5 {
+        @apply font-futura;
+        @apply text-2xl;
+    }
+    p {
+        @apply font-futura;
+        @apply text-lg;
+    }
+    .button {
+        @apply bg-mf-gold;
+        @apply hover:bg-mf-royal-purple;
+        @apply rounded-xl;
+        @apply shadow-lg;
+        @apply hover:shadow-md;
+        @apply py-3;
+        @apply px-8;
+        @apply text-white;
+        @apply font-futura;
+        @apply text-lg;
+        @apply uppercase;
+        @apply font-bold;
+        @apply cursor-pointer;
+        @apply w-max;
+        @apply text-center;
+
+    }
+
+    article.articleBody {
+        @apply text-mf-mid-gray;
+    }
+    article.articleBody p {
+        @apply mb-4;
+    }
+    article.articleBody p.caption {
+        @apply text-sm;
+        @apply text-center;
+    }
+    article.articleBody h2 {
+        @apply font-futura;
+        @apply text-2xl;
+    }
+    article.articleBody img {
+        @apply object-contain;
+        @apply rounded-md;
+        @apply lg:w-auto;
+        @apply h-auto;
+        @apply max-h-64;
+        @apply lg:m-6;
+        @apply mx-auto;
+    }
+    article.articleBody .image {
+        @apply md:w-max;
+        @apply lg:m-6;
+        @apply md:float-right;
+    }
+    article.articleBody ul {
+        @apply mt-3;
+        @apply list-outside;
+    }
+    article.articleBody ul li {
+        @apply list-disc;
+        @apply font-futura;
+        @apply text-base;
+        @apply font-medium;
+        @apply text-mf-mid-gray;
+        @apply mb-6;
+        @apply ml-8;
+    }
+    article.articleBody thead {
+        @apply w-max;
+    }
+    article.articleBody thead {
+        @apply text-mf-mid-gray;
+        @apply font-futura;
+        @apply font-bold;
+        @apply text-base;
+    }
+    article.articleBody td {
+        @apply text-mf-mid-gray;
+        @apply font-futura;
+        @apply font-medium;
+        @apply text-center;
+        @apply text-base;
+    }
+    .active {
+        @apply bg-mf-blue;
+        @apply bg-opacity-100;
+    }
+    .inactive {
+        @apply bg-mf-blue;
+        @apply bg-opacity-25;
+    }
+    .activeSort {
+        @apply text-mf-red;
+    }
+}
