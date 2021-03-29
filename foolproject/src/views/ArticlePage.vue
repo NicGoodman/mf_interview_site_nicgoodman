@@ -66,7 +66,10 @@
           </section>
         </section>
         <article class="articleBody" v-html="currentArticle.body"></article>
-        <article class="articleBody mb-12" v-html="currentArticle.disclosure"></article>
+        <article
+          class="articleBody mb-12"
+          v-html="currentArticle.disclosure"
+        ></article>
       </section>
       <CommentFeed />
     </section>
@@ -112,6 +115,15 @@ export default {
           .replace(/[^a-zA-Z ]/g, "")
           .replace(/\s+/g, "-")
           .toLowerCase();
+        // for (const stock of article.instruments) {
+        //   let stockUrl =
+        //     "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" +
+        //     stock.symbol +
+        //     "&apikey=7HGZXHT3Z2YCONMN";
+        //   axios.get(stockUrl).then((response) => {
+        //     stock.quote = response.data["Global Quote"]["05. price"];
+        //   });
+        // }
         if (
           "/articles/" + article.article_slug ===
           this.$router.currentRoute.path
