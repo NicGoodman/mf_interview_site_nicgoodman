@@ -13,7 +13,7 @@
 
     `pip install -r requirements.txt` (linux/mac/windows)
 
-* Run `python minimal.py runserver`
+* Run `python minimal.py runserver` (linux/mac/windows)
 * Open `http://127.0.0.1:8000/content`, and observe a large blob of json data 
 
 
