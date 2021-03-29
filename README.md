@@ -20,6 +20,10 @@ From the foolproject directory:
 * Run `npm install`
 * Run `npm run serve`, and observe the frontend running at `localhost:8080`
 
+### Related Links
+https://xd.adobe.com/view/ea605845-9eb2-4b97-8c62-20ae4ee35966-bf33/
+https://www.alphavantage.co/documentation/
+
 
 Hello!
 
