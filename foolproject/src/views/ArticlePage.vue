@@ -67,9 +67,16 @@
         </section>
         <article class="articleBody" v-html="currentArticle.body"></article>
         <article
-          class="articleBody mb-12"
+          class="articleBody"
           v-html="currentArticle.disclosure"
         ></article>
+        <p
+          id="learn-more"
+          class="button self-center mb-12"
+          @click="openModal()"
+        >
+          Learn More about the Authors
+        </p>
       </section>
       <CommentFeed />
     </section>
@@ -92,7 +99,7 @@ export default {
       showModal: false,
       visible: true,
       articles: [],
-      currentArticle: undefined,
+      currentArticle: {},
     };
   },
   components: {
@@ -112,9 +119,10 @@ export default {
       for (const article of this.articles) {
         article.body = article.body.replace("{%sfr%}", "");
         article.article_slug = article.headline
-          .replace(/[^a-zA-Z ]/g, "")
+          .replace(/[^a-z\d\s]+/gi, "")
           .replace(/\s+/g, "-")
           .toLowerCase();
+        //This is my code for the alpha vantage integration that I wanted to add. The free API only lets you pull in data every 5 min so I need to utilize some sort of initial call and caching.
         // for (const stock of article.instruments) {
         //   let stockUrl =
         //     "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" +
@@ -125,7 +133,10 @@ export default {
         //   });
         // }
         if (
-          "/articles/" + article.article_slug ===
+          "/articles/" +
+            article.collection.slug +
+            "/" +
+            article.article_slug ===
           this.$router.currentRoute.path
         ) {
           this.currentArticle = article;

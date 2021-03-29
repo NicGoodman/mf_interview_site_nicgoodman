@@ -1,5 +1,5 @@
 <template>
-<!-- The code for the LatestCard component is almost the same as the ArticleCard component. The differences are in styling and props are defined by properties from the first object in the tenPromiseArticles array. -->
+  <!-- The code for the LatestCard component is almost the same as the ArticleCard component. The differences are in styling and props are defined by properties from the first object in the tenPromiseArticles array. -->
   <article
     id=""
     class="bg-white rounded-3xl shadow-xl w-full mb-5 p-4 md:p-9 max-w-4xl flex flex-row flex-wrap flex-1"
@@ -18,6 +18,7 @@
           name: 'article',
           params: {
             articleSlug: articleSlug,
+            collectionSlug: collectionSlug,
           },
         }"
       >
@@ -54,6 +55,7 @@
           name: 'article',
           params: {
             articleSlug: articleSlug,
+            collectionSlug: collectionSlug,
           },
         }"
         ><p class="mt-auto w-max button">Read More</p></router-link
@@ -77,14 +79,15 @@ export default {
   data() {
     return {};
   },
-  props: [
-    "headline",
-    "thumbnail",
-    "promo",
-    "publishedDate",
-    "authors",
-    "tags",
-    "articleSlug",
-  ],
+  props: {
+    headline: String,
+    thumbnail: String,
+    promo: String,
+    publishedDate: String,
+    authors: Array,
+    tags: Array,
+    articleSlug: String,
+    collectionSlug: String,
+  },
 };
 </script>

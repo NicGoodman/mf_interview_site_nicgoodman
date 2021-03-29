@@ -14,7 +14,8 @@
     </h1>
     <!-- The button's visibility is conditionally set by the parent component's visible property -->
     <router-link to="/">
-      <p id="return-to-home-button"
+      <p
+        id="return-to-home-button"
         class="button w-max"
         :class="{ hidden: !visible }"
       >
@@ -27,6 +28,6 @@
 <script>
 export default {
   name: "HeaderSection",
-  props: ["visible"],
+  props: { visible: Boolean },
 };
 </script>

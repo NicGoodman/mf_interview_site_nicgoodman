@@ -24,7 +24,7 @@
         <LatestNewsHeading />
         <!-- I am pulling my props from the first entry in the array of articles with the 10-promise slug and populating a distinct article card-->
         <LatestCard
-          v-if="tenPromiseArticles"
+          v-if="tenPromiseArticles.length"
           :headline="tenPromiseArticles[0].headline"
           :thumbnail="tenPromiseArticles[0].images[0].url"
           :promo="tenPromiseArticles[0].promo"
@@ -32,6 +32,7 @@
           :publishedDate="tenPromiseArticles[0].publish_at"
           :tags="tenPromiseArticles[0].tags"
           :articleSlug="tenPromiseArticles[0].article_slug"
+          :collectionSlug="tenPromiseArticles[0].collection.slug"
         />
       </section>
     </section>
@@ -39,7 +40,7 @@
       id="older-articles-content"
       class="flex flex-row flex-wrap w-full justify-center z-20"
     >
-    <!-- The filters section includes filters for unique tags and a sort by date feature -->
+      <!-- The filters section includes filters for unique tags and a sort by date feature -->
       <FiltersSection
         :tags="tags"
         :activeTag="activeTag"
@@ -56,6 +57,7 @@
         :publishedDate="article.publish_at"
         :tags="article.tags"
         :articleSlug="article.article_slug"
+        :collectionSlug="article.collection.slug"
       />
     </section>
   </main>
@@ -77,7 +79,7 @@ export default {
       ascending: false,
       visible: false,
       articles: [],
-      tenPromiseArticles: undefined,
+      tenPromiseArticles: [],
       tags: [],
       activeTag: null,
     };
@@ -119,7 +121,7 @@ export default {
       //I am creating an article_slug property for each article and having it be equal to the headline
       for (const article of this.articles) {
         article.article_slug = article.headline
-          .replace(/[^a-zA-Z ]/g, "")
+          .replace(/[^a-z\d\s]+/gi, "")
           .replace(/\s+/g, "-")
           .toLowerCase();
       }
@@ -161,7 +163,7 @@ export default {
         this.articles = filteredArticles.data.results;
         for (const article of this.articles) {
           article.article_slug = article.headline
-            .replace(/[^a-zA-Z ]/g, "")
+            .replace(/[^a-z\d\s]+/gi, "")
             .replace(/\s+/g, "-")
             .toLowerCase();
         }
