@@ -1,3 +1,5 @@
+# Motley Fool Developer Interview Project
+##Setup Instructions
 ### Python API Setup
 * Install python3 https://realpython.com/installing-python/
 * Create a new virtual environment, activate it, and install project requirements
@@ -15,10 +17,8 @@
 ### Vue Frontend Setup
 * Install vue-cli as documented here https://cli.vuejs.org/guide/installation.html
 * Run `npm install`
-* Run `npm serve`, and observe the frontend running at `localhost:8080`
+* Run `npm run serve`, and observe the frontend running at `localhost:8080`
 
-
-## Motley Fool Developer Interview Project
 
 Hello!
 
