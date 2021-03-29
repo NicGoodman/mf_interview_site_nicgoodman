@@ -99,7 +99,7 @@ export default {
       showModal: false,
       visible: true,
       articles: [],
-      currentArticle: undefined,
+      currentArticle: {},
     };
   },
   components: {

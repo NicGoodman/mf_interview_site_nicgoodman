@@ -24,7 +24,7 @@
         <LatestNewsHeading />
         <!-- I am pulling my props from the first entry in the array of articles with the 10-promise slug and populating a distinct article card-->
         <LatestCard
-          v-if="tenPromiseArticles"
+          v-if="tenPromiseArticles.length"
           :headline="tenPromiseArticles[0].headline"
           :thumbnail="tenPromiseArticles[0].images[0].url"
           :promo="tenPromiseArticles[0].promo"
@@ -79,7 +79,7 @@ export default {
       ascending: false,
       visible: false,
       articles: [],
-      tenPromiseArticles: undefined,
+      tenPromiseArticles: [],
       tags: [],
       activeTag: null,
     };

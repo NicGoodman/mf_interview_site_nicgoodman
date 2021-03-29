@@ -4,11 +4,14 @@
 * Install python3 https://realpython.com/installing-python/
 * Create a new virtual environment, activate it, and install project requirements from the main directory.
 
-    `python3 -m venv intervue`
+    `python3 -m venv intervue` (linux/mac)
+    `python -m venv intervue` (windows)
 
-    `source intervue/bin/activate`
+    `source intervue/bin/activate` (linux/mac)
+    `.\intervue\Scripts\activate' (windows)
 
-    `pip install -r requirements.txt`
+
+    `pip install -r requirements.txt` (linux/mac/windows)
 
 * Run `python minimal.py runserver`
 * Open `http://127.0.0.1:8000/content`, and observe a large blob of json data 
@@ -16,17 +19,16 @@
 
 ### Vue Frontend Setup
 From the foolproject directory:
-* Install vue-cli as documented here https://cli.vuejs.org/guide/installation.html
 * Run `npm install`
 * Run `npm run serve`, and observe the frontend running at `localhost:8080`
 
 ### CORS
-For ease of development, to get around the CORS error, I added a no-referrer line to the head of my HTML and in Safari, enabled the "Disable Cross-Origin Restrictions" option listed under the "Develop" menu item. On Chrome, I am using the "Allow CORS: Access-Control-Allow-Origin" extension, link is below under "Related Links"
+For ease of development, to get around the CORS error, I added a no-referrer line to the head of my HTML and in Safari, enabled the "Disable Cross-Origin Restrictions" option listed under the "Develop" menu item. On Chrome, I am using the "Allow CORS: Access-Control-Allow-Origin" extension, link is below under "Related Links".
 
 ### Related Links
-https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en
-https://xd.adobe.com/view/ea605845-9eb2-4b97-8c62-20ae4ee35966-bf33/
-https://www.alphavantage.co/documentation/
+Allow CORS: Access-Control-Allow-Origin - https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en
+Adobe XD Mockup - https://xd.adobe.com/view/ea605845-9eb2-4b97-8c62-20ae4ee35966-bf33/
+Alpha Vantage Free API for future Stock Quote feature - https://www.alphavantage.co/documentation/
 
 
 Hello!
