@@ -7,15 +7,7 @@
       :to="{
         name: 'article',
         params: {
-          collectionSlug: collectionSlug,
-          headlineSlug: headlineSlug,
-          headline: headline,
-          publishedDate: publishedDate,
-          authors: authors,
-          tags: tags,
-          body: articleBody,
-          stocks: stocks,
-          articles:articles
+          articleSlug: articleSlug
         },
       }"
       ><h5 class="font-bold text-mf-blue">{{ headline }}</h5></router-link
@@ -28,6 +20,7 @@
         {{ author.byline }} •
       </p>
       <p class="inline">
+        <!-- Here the fancy vue date filters are used to show the publishedDate prop in a more visually appealing way. The data is not modified so the sort by date option still works as expected -->
         {{
           publishedDate
             | dateParse("YYYY-MM-DD HH:mm:ss")
@@ -48,15 +41,7 @@
         :to="{
           name: 'article',
           params: {
-            collectionSlug: collectionSlug,
-            headlineSlug: headlineSlug,
-            headline: headline,
-            publishedDate: publishedDate,
-            authors: authors,
-            tags: tags,
-            body: articleBody,
-            stocks: stocks,
-            articles:articles
+            articleSlug: articleSlug
           },
         }"
       >
@@ -80,8 +65,6 @@ export default {
   name: "ArticleCard",
   data() {
     return {
-      headlineSlug: "",
-      articleBody: ""
     }
   },
   props: [
@@ -91,18 +74,8 @@ export default {
     "publishedDate",
     "authors",
     "tags",
-    "collectionSlug",
-    "body",
-    "stocks",
-    "uuid",
-    "tenPromiseArticles",
-    "visible",
-    "articles"
+    "articleSlug"
   ],
-  created() {
-    this.headlineSlug = this.headline.replace(/[^a-zA-Z ]/g, "").replace(/\s+/g, '-').toLowerCase();
-    this.articleBody = this.body.replace("{%sfr%}", "");
-  },
 };
 </script>
 

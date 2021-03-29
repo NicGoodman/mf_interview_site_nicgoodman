@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+//importing my router views for the homepage and article page
 import HomePage from '../views/HomePage.vue'
 import ArticlePage from '../views/ArticlePage.vue'
 
 Vue.use(VueRouter)
 
+//setting up my application's routes
 const routes = [
   {
     path: "/",
@@ -12,7 +14,7 @@ const routes = [
     component: HomePage
   },
   {
-    path: "/articles/:collectionSlug/:headlineSlug",
+    path: "/articles/:articleSlug",
     name: "article",
     component: ArticlePage,
     props: true
