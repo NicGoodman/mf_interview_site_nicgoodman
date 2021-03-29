@@ -4,14 +4,19 @@
     class="fixed inset-0 w-full h-screen bg-mf-mid-gray bg-opacity-90 flex flex-col items-center justify-center z-50 p-4"
     :class="{ hidden: !showModal }"
   >
-  <!-- pulling in and creating a card for all authors for an article -->
+    <!-- pulling in and creating a card for all authors for an article -->
     <article
       v-for="author in authors"
       :key="author.uuid"
       id=""
       class="bg-white rounded-3xl shadow-xl w-full mb-5 p-4 md:p-9 max-w-4xl flex flex-row flex-wrap"
     >
-      <div id="close-button" class="text-mf-blue text-3xl text-right w-full cursor-pointer"><i class="fad fa-times-circle" @click="openModal()"></i></div>
+      <div
+        id="close-button"
+        class="text-mf-blue text-3xl text-right w-full cursor-pointer"
+      >
+        <i class="fad fa-times-circle" @click="openModal()"></i>
+      </div>
       <img
         :src="author.large_avatar_url"
         alt=""
@@ -45,11 +50,11 @@
 <script>
 export default {
   name: "AuthorBioModal",
-  props: ["authors", "showModal"],
+  props: { authors: Array, showModal: Boolean },
   methods: {
     openModal() {
       this.$parent.openModal();
-    }
+    },
   },
 };
 </script>

@@ -28,6 +28,6 @@
 <script>
 export default {
   name: "RecentsFeed",
-  props: ["articles", "articleSlug"],
+  props: { articles: Array, articleSlug: String },
 };
 </script>

@@ -7,7 +7,8 @@
       :to="{
         name: 'article',
         params: {
-          articleSlug: articleSlug
+          articleSlug: articleSlug,
+          collectionSlug: collectionSlug,
         },
       }"
       ><h5 class="font-bold text-mf-blue">{{ headline }}</h5></router-link
@@ -41,7 +42,8 @@
         :to="{
           name: 'article',
           params: {
-            articleSlug: articleSlug
+            articleSlug: articleSlug,
+            collectionSlug: collectionSlug,
           },
         }"
       >
@@ -64,18 +66,18 @@
 export default {
   name: "ArticleCard",
   data() {
-    return {
-    }
+    return {};
   },
-  props: [
-    "headline",
-    "thumbnail",
-    "promo",
-    "publishedDate",
-    "authors",
-    "tags",
-    "articleSlug"
-  ],
+  props: {
+    headline: String,
+    thumbnail: String,
+    promo: String,
+    publishedDate: String,
+    authors: Array,
+    tags: Array,
+    articleSlug: String,
+    collectionSlug: String,
+  },
 };
 </script>
 

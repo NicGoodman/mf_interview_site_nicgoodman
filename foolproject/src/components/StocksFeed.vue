@@ -11,11 +11,10 @@
         class="m-4 lg:m-0 lg:my-2"
       >
         <h5 class="font-bold text-mf-blue">{{ stock.company_name }}</h5>
-        <p
-          class="font-bold text-mf-mid-gray uppercase"
-        >
+        <p class="font-bold text-mf-mid-gray uppercase">
           <span class="font-medium">{{ stock.exchange }}: </span
-          >{{ stock.symbol }}<!-- • {{ stock.quote }} -->
+          >{{ stock.symbol
+          }}<!-- • {{ stock.quote }} -->
         </p>
       </li>
     </ul>
@@ -37,12 +36,9 @@ export default {
     //stocksArray is populated by the stocks prop so the order can be maniuplated with the shuffle button
     return {
       stocksArray: this.stocks,
-
     };
   },
-  props: ["stocks"],
-  methods: {
-
-  },
+  props: { stocks: Array },
+  methods: {},
 };
 </script>
