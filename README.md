@@ -4,11 +4,11 @@
 * Install python3 https://realpython.com/installing-python/
 * Create a new virtual environment, activate it, and install project requirements from the main directory.
 
-    `python3 -m venv intervue` (linux/mac)
+    `python3 -m venv intervue` (linux/mac) or
     `python -m venv intervue` (windows)
 
-    `source intervue/bin/activate` (linux/mac)
-    `.\intervue\Scripts\activate' (windows)
+    `source intervue/bin/activate` (linux/mac) or
+    `.\intervue\Scripts\activate` (windows)
 
 
     `pip install -r requirements.txt` (linux/mac/windows)
