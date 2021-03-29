@@ -2,7 +2,7 @@
 ## Setup Instructions
 ### Python API Setup
 * Install python3 https://realpython.com/installing-python/
-* Create a new virtual environment, activate it, and install project requirements
+* Create a new virtual environment, activate it, and install project requirements from the main directory.
 
     `python3 -m venv intervue`
 
@@ -15,6 +15,7 @@
 
 
 ### Vue Frontend Setup
+From the foolproject directory:
 * Install vue-cli as documented here https://cli.vuejs.org/guide/installation.html
 * Run `npm install`
 * Run `npm run serve`, and observe the frontend running at `localhost:8080`
