@@ -1,5 +1,5 @@
 # Motley Fool Developer Interview Project
-##Setup Instructions
+## Setup Instructions
 ### Python API Setup
 * Install python3 https://realpython.com/installing-python/
 * Create a new virtual environment, activate it, and install project requirements
