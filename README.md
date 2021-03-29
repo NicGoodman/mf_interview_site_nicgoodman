@@ -20,7 +20,11 @@ From the foolproject directory:
 * Run `npm install`
 * Run `npm run serve`, and observe the frontend running at `localhost:8080`
 
+### CORS
+For ease of development, to get around the CORS error, I added a no-referrer line to the head of my HTML and in Safari, enabled the "Disable Cross-Origin Restrictions" option listed under the "Develop" menu item. On Chrome, I am using the "Allow CORS: Access-Control-Allow-Origin" extension, link is below under "Related Links"
+
 ### Related Links
+https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en
 https://xd.adobe.com/view/ea605845-9eb2-4b97-8c62-20ae4ee35966-bf33/
 https://www.alphavantage.co/documentation/
 
