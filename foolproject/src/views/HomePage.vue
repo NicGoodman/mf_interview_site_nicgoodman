@@ -43,6 +43,7 @@
       <!-- The filters section includes filters for unique tags and a sort by date feature -->
       <FiltersSection
         :tags="tags"
+        :stocks="stocks"
         :activeTag="activeTag"
         :ascending="ascending"
       />
@@ -81,6 +82,7 @@ export default {
       articles: [],
       tenPromiseArticles: [],
       tags: [],
+      stocks: [],
       activeTag: null,
     };
   },
@@ -140,6 +142,14 @@ export default {
             });
           }
         }
+        for (const stock of article.instruments) {
+          if (!map.has(stock.symbol)) {
+            map.set(stock.symbol, true);
+            this.stocks.push({
+              stock
+            });
+          }
+        }
       }
     } catch (error) {
       console.error(error);
@@ -174,6 +184,10 @@ export default {
     sortArticles() {
       this.ascending = !this.ascending;
     },
+    filterArticlesByStock(stockSymbol) {
+      console.log(stockSymbol);
+      console.log(this.articles.instruments.filter(article => article.symbol == stockSymbol));
+    }
   },
   props: {},
   components: {

@@ -45,6 +45,16 @@
             >
               {{ tag.tag.name }}
             </li>
+            <li
+              v-for="(stock, i) in stocks"
+              :key="stock.stock.symbol"
+               @click="filterArticlesByStock(stock.stock.symbol)"
+              :class="{ active: i === activeTag, inactive: i != activeTag }"
+              class="text-xs inline-block rounded-full px-2 py-1 m-1 hover:bg-opacity-100 cursor-pointer"
+            >
+              {{ stock.stock.symbol }}
+            </li>
+
           </ul>
         </section>
       </div>
@@ -57,6 +67,7 @@ export default {
   name: "FiltersSection",
   props: {
     tags: Array,
+    stocks: Array,
     activeTag: Number,
     ascending: Boolean,
   },
@@ -65,9 +76,15 @@ export default {
     getArticles(tagSlug, i) {
       this.$parent.getArticles(tagSlug, i);
     },
+    filterArticlesByStock(stockSymbol) {
+      this.$parent.filterArticlesByStock(stockSymbol);
+    },
     sortArticles() {
       this.$parent.sortArticles();
     },
+  },
+  mounted() {
+    console.log(this.stocks);
   },
 };
 </script>
